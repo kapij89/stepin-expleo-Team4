@@ -1,0 +1,21 @@
+{
+  "uid" : "98d3104e051c652961429bf95fa0b5d6",
+  "children" : [ {
+    "name" : "Buy Product",
+    "children" : [ {
+      "name" : "Buy a SwagLabs product successfully",
+      "uid" : "6a98d3d44450ecb2",
+      "parentUid" : "e529482d1997a3723680ac764568aea0",
+      "status" : "passed",
+      "time" : {
+        "start" : 1712582883511,
+        "stop" : 1712582901033,
+        "duration" : 17522
+      },
+      "flaky" : false,
+      "parameters" : [ "Ashish", "Ghosh", "secret_sauce", "Sauce Labs Fleece Jacket", "standard_user", "1181" ]
+    } ],
+    "uid" : "e529482d1997a3723680ac764568aea0"
+  } ],
+  "name" : "suites"
+}

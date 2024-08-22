@@ -1,0 +1,7 @@
+[ {
+  "values" : [ "Test" ],
+  "name" : "Stand"
+}, {
+  "values" : [ "Chromium" ],
+  "name" : "Browser"
+} ]
