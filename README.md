@@ -1,3 +1,6 @@
+[![CI](https://github.com/kapij89/playwright/actions/workflows/maven.yml/badge.svg)](https://github.com/kapij89/playwright/actions/workflows/maven.yml)
+
+
 # Playwright-Java-Cucumber
 
 
@@ -90,3 +93,7 @@ Specific tagged scenarios| `mvn clean test -Dcucumber.options="--tags @Smoke"`
 You can study this repository for a detailed implementation.
 
 To know about the Java implementation of Playwright follow [this.](https://playwright.dev/java/docs/intro/)
+
+To Generate allure report  :
+
+**'mvn allure:server'**
