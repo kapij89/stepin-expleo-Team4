@@ -67,7 +67,7 @@ public abstract class BasePage {
 	                    .setUserAgent("Custom Webkit"));
 	             page = context.newPage();
 		}else{
-			browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(50));
+			browser = browserType.launch(new BrowserType.LaunchOptions().setHeadless(true).setSlowMo(50));
 			page = browser.newPage();
 		}
 		// Recording Trace for webSite
