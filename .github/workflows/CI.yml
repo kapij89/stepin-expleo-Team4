@@ -1,0 +1,126 @@
+name: Continous Test Deployment--CI
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # This event allows manual triggering
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions: 
+      id-token: write
+      contents: write
+      actions: write
+      checks: write
+      deployments: write
+      discussions: write
+      issues: write
+      pages: read
+      packages: write
+      pull-requests: write
+      repository-projects: write
+      security-events: write
+      statuses: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: '17'
+
+      - name: Mvn Build and Test
+        run: |
+          if [ ${{ vars.PARALLELMODE }} == true ]; then
+          echo "Parallel Mode on"
+          mvn clean package -Pparallel-enabled
+          else
+          echo "Parallel Mode off"
+          mvn clean package -Pparallel-disabled
+          fi
+        env:
+          CI: true
+      - name: Allure report generate
+        run: |
+          mvn allure:report
+        env:
+          CI: true
+
+      
+      - name: Test Report
+        uses: dorny/test-reporter@v1
+        if: always()
+        with:
+         name: Overall Report
+         path: "**/junitreport.xml"                        
+         reporter: java-junit    
+         fail-on-error: false
+      - name: Publish Test Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-results
+          path: target/junitreport.xml
+      - name: Generate Cucumber Report
+        run: |
+          # Generate your Cucumber HTML report here
+          # Replace the following line with the actual command to generate the report
+          echo "Generating Cucumber HTML report"
+        working-directory: target
+
+      - name: Publish Cucumber Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: cucumber-html-report
+          path: target/cucumber-reports
+      - name: Upload JAR Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: playwright-testautomation-jar
+          path: target/*.jar   
+      - name: Upload allure Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Allure Artificat
+          path: target/results
+      - uses: deblockt/cucumber-report-annotations-action@v1.7
+        with:
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+          path: "target/jsonreport.json"
+      - name: Notify Microsoft Teams
+        run: |
+          # Replace YOUR_WEBHOOK_URL with your actual Microsoft Teams webhook URL
+          curl -X POST -H "Content-Type: application/json" -d '{
+            "text": "Automated Message:Test Automation build completed successfully.Reach out @kapildev.jagadishprasad@expleogroup.com for more info."
+          }' https://ardianet.webhook.office.com/webhookb2/3af26022-eb51-44aa-a4b9-8ffef142bc48@3b0e7247-e0d5-44bf-8ed1-d01b18d16ca2/IncomingWebhook/d2b6789dfb654166ab59b503d4eef823/eced495d-0bd4-4576-8f3c-7491aa4b95cb    
+      - name: Get Allure history
+        uses: actions/checkout@v2
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Allure Report action from marketplace
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        id: allure-report
+        with:
+          allure_results: allure-results
+          gh_pages: gh-pages
+          allure_report: allure-report
+          allure_history: allure-history
+      - name: Build and Generate Allure Report
+        run: |
+          # Replace these commands with your build and allure report generation commands
+          mvn allure:report
+      - name: Publish Allure Report to GitHub Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v2
+        env:
+          PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: target/results/allure-report
