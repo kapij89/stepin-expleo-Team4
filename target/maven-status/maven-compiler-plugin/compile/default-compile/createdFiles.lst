@@ -1,0 +1,7 @@
+pages\BasePage.class
+pages\LoginPage.class
+pages\twitterloginandtweet.class
+pages\CheckoutPage.class
+utils\ConfigReader.class
+pages\ItemsPage.class
+utils\WebActions.class

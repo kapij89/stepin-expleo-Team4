@@ -1,0 +1,4 @@
+stepdefinitions\MobileStepsDefinitions.class
+stepdefinitions\UIStepDefinitions.class
+stepdefinitions\RestApiStepDefinitions.class
+runner\TestRunner.class

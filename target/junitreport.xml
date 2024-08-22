@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="15.263" tests="1" skipped="0" failures="0" errors="0">
+<testcase classname="Buy Product" name="Buy a SwagLabs product successfully - Example #1.1" time="15.098">
+<system-out><![CDATA[
+Given User launched SwagLabs application....................................passed
+When User logged in the app using username "standard_user" and password "secret_sauce".passed
+And User adds "Sauce Labs Fleece Jacket" product to the cart................passed
+And User enters Checkout details with "Ashish", "Ghosh", "1181".............passed
+And User completes Checkout process.........................................passed
+Then User should get the Confirmation of Order..............................passed
+]]></system-out>
+</testcase>
+</testsuite>
