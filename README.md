@@ -1,4 +1,4 @@
-[![CI](https://github.com/stepin-expleo/stepin-expleo-Team4/actions/workflows/maven.yml/badge.svg)](https://github.com/stepin-expleo/stepin-expleo-Team4/actions/workflows/CI.yml)
+[![CI](https://github.com/stepin-expleo/stepin-expleo-Team4/actions/workflows/CI.yml/badge.svg)](https://github.com/stepin-expleo/stepin-expleo-Team4/actions/workflows/CI.yml)
 
 
 # Playwright-Java-Cucumber
