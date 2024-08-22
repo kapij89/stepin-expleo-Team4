@@ -1,4 +1,4 @@
-[![CI](https://github.com/kapij89/playwright/actions/workflows/maven.yml/badge.svg)](https://github.com/kapij89/playwright/actions/workflows/maven.yml)
+[![CI](https://github.com/kapij89/playwright/actions/workflows/maven.yml/badge.svg)](https://github.com/kapij89/playwright/actions/workflows/CI.yml)
 
 
 # Playwright-Java-Cucumber
