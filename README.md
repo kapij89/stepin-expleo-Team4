@@ -96,4 +96,4 @@ To know about the Java implementation of Playwright follow [this.](https://playw
 
 To Generate allure report  :
 
-**'mvn allure:server'**
+**'mvn allure:serve'**
