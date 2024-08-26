@@ -29,8 +29,8 @@ public class MobileStepsDefinitions {
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "RZ8R32QJCAW");
 //        capabilities.setCapability(MobileCapabilityType.APP, "");
-         capabilites.setCapability(MobileCapabilityType.APP_PACKAGE ,"com.android.chrome");
-         capabilites.setCapability(MobileCapabilityType.APP_ACTIVITY ,"com.google.android.apps.chrome.Main");
+         capabilites.setCapability("appPackage" ,"com.android.chrome");
+         capabilites.setCapability("appActivity" ,"com.google.android.apps.chrome.Main");
 
         URI appiumServerURI = URI.create("http://localhost:4723/wd/hub");
         URL appiumServerURL = appiumServerURI.toURL();
