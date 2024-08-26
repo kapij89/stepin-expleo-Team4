@@ -1,0 +1,23 @@
+
+name: Mobile-Tesing-local-Device-CI
+
+on:
+  push:
+    branches: [ feature-mobile ]
+  pull_request:
+    branches: [ feature-mobile ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        api-level: [28]  
+        target: [default]
+    steps:
+    - uses: actions/checkout@v2
+    - name: running maven test
+      run: |
+          set ANDROID_HOME=C:\Users\kprasad\AppData\Local\Android\Sdk
+          mvn clean test -Pandroid -X
