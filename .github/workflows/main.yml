@@ -16,8 +16,11 @@ jobs:
         api-level: [28]  
         target: [default]
     steps:
-    - uses: actions/checkout@v2
-    - name: running maven test
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        ref: feature-mobile  # Specify the branch name you want to clone
+    - name: Running Maven test
       run: |
           set ANDROID_HOME=C:\Users\kprasad\AppData\Local\Android\Sdk
           mvn clean test -Pandroid -X
