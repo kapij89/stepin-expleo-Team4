@@ -27,10 +27,10 @@ public class MobileStepsDefinitions {
     public void iLaunchTheApp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "eec1e9e8");
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "RZ8R32QJCAW");
 //        capabilities.setCapability(MobileCapabilityType.APP, "");
-        capabilities.setCapability("appPackage", "com.instagram.android");
-        capabilities.setCapability("appActivity", ".activity.MainTabActivity");
+         capabilites.setCapability(AndroidMobileCapabilityType.APP_PACKAGE ,"com.android.chrome");
+         capabilites.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY ,"com.google.android.apps.chrome.Main");
 
         URI appiumServerURI = URI.create("http://localhost:4723/wd/hub");
         URL appiumServerURL = appiumServerURI.toURL();
