@@ -1,6 +1,7 @@
 package stepdefinitions;
 
 
+import com.microsoft.playwright.ElementHandle;
 import org.junit.After;
 
 import com.microsoft.playwright.Page;
@@ -8,12 +9,10 @@ import com.microsoft.playwright.Page;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.Scenario;
 import io.cucumber.java.en.*;
-import pages.BasePage;
-import pages.CheckoutPage;
-import pages.ItemsPage;
-import pages.LoginPage;
-import pages.twitterloginandtweet;
+import pages.*;
 import utils.ConfigReader;
+
+import java.io.File;
 //import com.epam.reportportal.example.cucumber6.Belly;
 
 public class UIStepDefinitions extends BasePage{
@@ -23,6 +22,7 @@ public class UIStepDefinitions extends BasePage{
 	ItemsPage itemsPage;
 	CheckoutPage checkoutPage;
 	pages.twitterloginandtweet twitterlogin;
+	InstagramLogin instagramLogin;
 	  boolean captureScreenshot;
 	Page page;
 
@@ -139,5 +139,55 @@ public class UIStepDefinitions extends BasePage{
 		if (page != null) {
 			page.close();
 		}
+	}
+
+	@Given("User launched Instagram")
+	public void userLaunchedInstagram() {
+		captureScreenshot = true;
+		try {
+
+			page = createPlaywrightPageInstance(ConfigReader.getProperty("browser"));
+			page.navigate(ConfigReader.getProperty("instagramURL"));
+
+			instagramLogin = new InstagramLogin(page);
+//			itemsPage = new ItemsPage(page);
+//			checkoutPage = new CheckoutPage(page);
+
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
+
+
+	@When("user is able to login with user cred")
+	public void userIsAbleToLoginWithUserCred() {
+		captureScreenshot = true;
+		try {
+			String username = ConfigReader.getProperty("instaUsername");
+			String password = ConfigReader.getProperty("instaPassword");
+			instagramLogin.instalogin(username, password);
+
+		}
+		catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+	@And("user is able to create a post")
+	public void userIsAbleToCreateAPost() {
+	instagramLogin.createPost();
+
+	}
+
+	@Given("User tests shadowroot")
+	public void userTestsShadowroot() {
+		page = createPlaywrightPageInstance(ConfigReader.getProperty("browser"));
+		instagramLogin = new InstagramLogin(page);
+		instagramLogin.shadowDom();
+
 	}
 }

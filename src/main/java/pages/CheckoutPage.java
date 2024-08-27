@@ -16,6 +16,7 @@ public class CheckoutPage extends BasePage{
 	      page.fill("[data-test=\"firstName\"]", firstname);
 	      page.fill("[data-test=\"lastName\"]", lastname);
 	      page.fill("[data-test=\"postalCode\"]", postcode);
+
 	}
 	 public void completeCheckout() {
 	      page.click("[data-test=\"continue\"]");

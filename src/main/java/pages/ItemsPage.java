@@ -23,5 +23,7 @@ public class ItemsPage extends BasePage {
 
 	public void loginSuccessful() {
 		Assert.assertTrue(page.isVisible("text=Products"));
+
 	}
+
 }
