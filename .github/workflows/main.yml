@@ -1,0 +1,26 @@
+
+name: Mobile-Tesing-local-Device-CI
+
+on:
+  push:
+    branches: [ feature-mobile ]
+  pull_request:
+    branches: [ feature-mobile ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        api-level: [28]  
+        target: [default]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        ref: feature-mobile  # Specify the branch name you want to clone
+    - name: Running Maven test
+      run: |
+          set ANDROID_HOME=C:\Users\kprasad\AppData\Local\Android\Sdk
+          mvn clean test -Pandroid -X
