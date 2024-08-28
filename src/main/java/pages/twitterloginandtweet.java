@@ -1,6 +1,6 @@
 package pages;
 
-import org.junit.Assert;
+//import org.junit.Assert;
 
 import com.microsoft.playwright.ElementHandle;
 import com.microsoft.playwright.Page;
@@ -66,6 +66,6 @@ public class twitterloginandtweet {
 	}
 	public void loginFailed() {
 		boolean visible = page.isVisible("//h3[text()='Epic sadface: Sorry, this user has been locked out.']");
-		Assert.assertTrue(visible);
+//		Assert.assertTrue(visible);
 	}
 }

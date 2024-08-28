@@ -1,21 +1,12 @@
-Feature: Login
-    
+Feature: CLick on WebPart of IndianExpress
 
-  Scenario Outline: Login to SwagLabs Application with Correct credentials
-    Given User launched SwagLabs application
-    When User logged in the app using username "<UserName>" and password "<Password>"
-    Then user should be able to log in
+  @autothon
+  Scenario Outline: Website Navigation and Data Extraction
+    Given User launches IndianExpress
+    When User click on linklabels
 
-    Examples:
-      | UserName           | Password     |
-      | standard_user      | secret_sauce |
-
-  @SmokeTest  
-  Scenario Outline: Login to SwagLabs Application with Wrong credentials
-    Given User launched SwagLabs application
-    When User logged in the app using username "<UserName>" and password "<Password>"
-    Then User should not get logged in
-
-    Examples:
-      | UserName           | Password     |
-      | locked_out_user    | secret_sauce |
+    Examples: 
+      | label    |
+      | India    |
+      | Sports   |
+      | Business |

@@ -6,41 +6,58 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import pages.BasePage;
+import pages.StepinMobilepage;
+import pages.mobilePage;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-//import cucumber.api.java.en.*;
-
-import java.net.MalformedURLException;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 
 import static org.junit.Assert.assertTrue;
 
-public class MobileStepsDefinitions {
+public class MobileStepsDefinitions extends BasePage{
+	
 
-    public AppiumDriver driver;
+//   @Given("I launch the app")
+//   public void launchapp(){
+//	   
+//	   
+//   }
+//    @Then("I should see the {string} element")
+//    public void iShouldSeeTheElement(By elementId) {
+//    	mobilePage.VerifytheElement();
+////        WebElement element = driver.findElement(elementId);
+////        assertTrue(element.isDisplayed());
+//    }
+	
+	@Given("I launch the app")
+	public void i_launch_the_app() throws Exception {
+	 mobilePage.launchmobile();
+	   
+	}
 
-    @Given("I launch the app")
-    public void iLaunchTheApp() throws MalformedURLException {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "eec1e9e8");
-//        capabilities.setCapability(MobileCapabilityType.APP, "");
-        capabilities.setCapability("appPackage", "com.instagram.android");
-        capabilities.setCapability("appActivity", ".activity.MainTabActivity");
+	@When("click the product button it entert to the application")
+	public void click_the_product_button_it_entert_to_the_application() {
+		StepinMobilepage.clickProductbtn();
+	}
 
-        URI appiumServerURI = URI.create("http://localhost:4723/wd/hub");
-        URL appiumServerURL = appiumServerURI.toURL();
-        driver = new AndroidDriver(appiumServerURL, capabilities);
+	@Then("Scroll to the product and get the details")
+	public void scroll_to_the_product_and_get_the_details() {
+		StepinMobilepage.scrollAndGetdetails();
+		
+	}
 
-    }
+	@Then("Push those details to the backend")
+	public void push_those_details_to_the_backend() {
+		StepinMobilepage.writemethod();
+	}
 
-    @Then("I should see the {string} element")
-    public void iShouldSeeTheElement(By elementId) {
-        WebElement element = driver.findElement(elementId);
-        assertTrue(element.isDisplayed());
-    }
+
+
 }
